@@ -1901,6 +1901,8 @@ article:hover {
 		margin-right: 3em;
 		min-width: 22em;
 		width: 22em;
+		display: flex;
+    	flex-direction: column; /* Asegura que las secciones se apilen verticalmente */
 	}
 
 		#sidebar > * {
@@ -1996,7 +1998,7 @@ article:hover {
     margin: auto;
 }
 
-.contacto h1 {
+.contacto h2 {
     font-size: 36px;
     font-weight: bold;
     font-family: 'Arial', sans-serif; /* Asegurando una fuente similar */
@@ -2222,3 +2224,85 @@ figcaption h3 {
     border-color: #999999; /* Borde más oscuro */
     color: #000000; /* Texto más oscuro */
 }
+
+
+
+
+
+/*botones**/
+
+.redes {
+	display: flex;
+	gap: 1rem; /* Espaciado horizontal entre elementos */
+	justify-content: center; /* Centra los elementos horizontalmente */
+	margin: 0 auto; /* Asegura que esté centrado dentro del contenedor */
+}
+
+.redes-item {
+	cursor: pointer; /* Indica que es interactivo */
+	padding: 0.5rem; /* Espaciado interno */
+	border: 1px solid transparent; /* Opcional: para destacar al enfocar */
+	border-radius: 0.25rem; /* Bordes redondeados */
+}
+
+.redes-item:focus {
+	outline: none;
+	border-color: #007bff; /* Color de enfoque */
+	box-shadow: 0 0 4px rgba(0, 123, 255, 0.8); /* Efecto de enfoque */
+}
+
+
+/*ICONSFOOTER*/
+/* Estilo para los iconos */
+.icon {
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px; /* Ajusta el tamaño del icono */
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    vertical-align: middle; /* Alinea el icono verticalmente con el texto */
+}
+
+/* Estilo de los enlaces de las redes sociales */
+.redes span {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px; /* Espacio entre los botones de redes sociales */
+}
+
+.redes .label {
+    font-size: 16px; /* Tamaño de la etiqueta de texto */
+}
+
+.redes span:focus {
+    outline: 2px solid #4d90fe;  /* Un borde azul visible para los elementos enfocados */
+}
+
+
+
+
+
+
+/* Estilo para la imagen decorativa */
+.decorative-image {
+    width: 100%;        /* Hace que la imagen ocupe el 100% del ancho disponible */
+    height: auto;       /* Mantiene la relación de aspecto de la imagen */
+    max-width: 100%;    /* Limita el tamaño máximo de la imagen al 100% de su contenedor */
+    object-fit: cover;  /* Asegura que la imagen cubra completamente el área sin distorsión */
+    display: block;     /* Elimina espacio extra debajo de la imagen */
+    margin: 0 auto;     /* Centra la imagen horizontalmente */
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .decorative-image {
+        width: 80%; /* Reduce el tamaño de la imagen en pantallas más pequeñas */
+    }
+}
+
+/* Para pantallas grandes */
+@media (min-width: 1024px) {
+    .decorative-image {
+        width: 100%; /* Mantiene el tamaño completo en pantallas grandes */
+    }
+}
+

@@ -97,3 +97,73 @@ document.addEventListener('keydown', function(event) {
     closeModal();
   }
 });
+
+
+// JavaScript para manejar el modal accesible
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('myModal');
+  const openModalButton = document.querySelector('.button[href="/ExtraPags/videoColima.html"]');
+  const closeModalButton = modal.querySelector('.close');
+  const focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+  let focusableElements;
+  let firstFocusableElement;
+  let lastFocusableElement;
+
+  // Función para abrir el modal
+  function openModal(event) {
+      event.preventDefault();
+      modal.removeAttribute('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+
+      focusableElements = modal.querySelectorAll(focusableElementsString);
+      firstFocusableElement = focusableElements[0];
+      lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+      firstFocusableElement.focus();
+
+      document.addEventListener('keydown', trapTabKey);
+      document.body.style.overflow = 'hidden'; // Evitar el scroll de fondo
+  }
+
+  // Función para cerrar el modal
+  function closeModal() {
+      modal.setAttribute('hidden', '');
+      modal.setAttribute('aria-hidden', 'true');
+      openModalButton.focus();
+
+      document.removeEventListener('keydown', trapTabKey);
+      document.body.style.overflow = 'auto'; // Restaurar el scroll
+  }
+
+  // Función para trapear el focus dentro del modal
+  function trapTabKey(e) {
+      if (e.key === 'Tab') {
+          if (e.shiftKey) { // Shift + Tab
+              if (document.activeElement === firstFocusableElement) {
+                  e.preventDefault();
+                  lastFocusableElement.focus();
+              }
+          } else { // Tab
+              if (document.activeElement === lastFocusableElement) {
+                  e.preventDefault();
+                  firstFocusableElement.focus();
+              }
+          }
+      }
+
+      if (e.key === 'Escape') {
+          closeModal();
+      }
+  }
+
+  // Event Listeners
+  openModalButton.addEventListener('click', openModal);
+  closeModalButton.addEventListener('click', closeModal);
+
+  // Cerrar el modal al hacer clic fuera del contenido
+  modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+          closeModal();
+      }
+  });
+});
